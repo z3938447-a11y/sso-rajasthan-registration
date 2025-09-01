@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rajasthan Single Sign-On (SSO) — Register, Login & Official Portals (Part 1)</title>
+  <meta name="description" content="Complete Part 1 guide to Rajasthan Single Sign-On (SSO): what it is, benefits, who can use it, prerequisites, and official government portals. Mobile responsive, SEO-ready." />
+  <link rel="canonical" href="https://example.com/rajasthan-single-sign-on-sso-guide" />
+  
+  <!-- Open Graph for social preview -->
+  <meta property="og:title" content="Rajasthan Single Sign-On (SSO) — Complete Guide (Part 1)" />
+  <meta property="og:description" content="Understand Rajasthan SSO basics, benefits, prerequisites, and official portals. SEO-ready, mobile-first." />
+  <meta property="og:type" content="article" />
+  <meta property="og:locale" content="en_IN" />
+
+  <style>
+    :root {
+      --bg: #0b0f14;
+      --card: #121823;
+      --muted: #9fb2c8;
+      --text: #e7eef7;
+      --brand: #6bc4ff;
+      --brand-2: #a68cff;
+      --accent: #59f0c6;
+      --danger: #ff6b6b;
+      --ring: 0 0 0 3px rgba(107,196,255,0.25);
+      --radius: 18px;
+      --shadow-1: 0 10px 35px rgba(0,0,0,0.35);
+      --shadow-2: 0 6px 20px rgba(0,0,0,0.28);
+    }
+    * { box-sizing: border-box; }
+    html, body { height: 100%; }
+    body {
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
+      background: radial-gradient(1200px 600px at 80% -10%, rgba(166,140,255,0.12), transparent 60%),
+                  radial-gradient(900px 500px at 10% 10%, rgba(107,196,255,0.12), transparent 50%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    a { color: var(--brand); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Layout */
+    .container { width: 100%; max-width: 1160px; margin: 0 auto; padding: 0 18px; }
+    header.site-header {
+      position: sticky; top: 0; z-index: 50;
+      backdrop-filter: saturate(140%) blur(12px);
+      background: rgba(11,15,20,0.7);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+    }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; padding: 14px 0; }
+    .brand { display: flex; align-items: center; gap: 10px; }
+    .brand-logo {
+      width: 40px; height: 40px; border-radius: 12px;
+      background: linear-gradient(145deg, var(--brand), var(--brand-2));
+      box-shadow: var(--shadow-2);
+    }
+    .brand h1 { font-size: 18px; margin: 0; letter-spacing: 0.2px; }
+
+    nav ul { display: flex; gap: 16px; padding: 0; margin: 0; list-style: none; }
+    nav a { padding: 8px 12px; border-radius: 999px; display: inline-block; }
+    nav a:hover { background: rgba(255,255,255,0.06); }
+
+    .cta { display: inline-flex; align-items: center; gap: 10px; padding: 10px 14px; border-radius: 999px; border: 1px solid rgba(255,255,255,0.12); }
+    .cta.primary { background: linear-gradient(145deg, var(--brand), var(--brand-2)); color: #0b0f14; border: none; box-shadow: var(--shadow-1); }
+    .cta.secondary { background: rgba(255,255,255,0.06); }
+    .cta:hover { transform: translateY(-1px); box-shadow: var(--shadow-1); }
+    .cta:focus { outline: none; box-shadow: var(--ring); }
+
+    /* Hero */
+    .hero { position: relative; padding: 48px 0 28px; }
+    .hero-grid { display: grid; grid-template-columns: 1.1fr; gap: 22px; align-items: center; }
+    .hero h2 { font-size: clamp(28px, 4.6vw, 44px); line-height: 1.15; margin: 0 0 10px; }
+    .hero p.sub { color: var(--muted); font-size: clamp(15px, 2.2vw, 18px); margin: 0 0 18px; }
+    .hero-cards { display: grid; grid-template-columns: 1fr; gap: 16px; }
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: var(--shadow-2);
+    }
+    .badge { display: inline-block; padding: 6px 10px; border-radius: 999px; font-size: 12px; letter-spacing: 0.3px; background: rgba(89,240,198,0.1); color: var(--accent); border: 1px solid rgba(89,240,198,0.4); }
+
+    /* Sections */
+    section { padding: 26px 0; }
+    .section-title { font-size: clamp(22px, 3.4vw, 32px); margin: 0 0 12px; }
+    .lead { color: var(--muted); margin: 0 0 8px; }
+
+    .grid-2 { display: grid; grid-template-columns: 1fr; gap: 16px; }
+    .grid-3 { display: grid; grid-template-columns: 1fr; gap: 16px; }
+
+    .list-check { padding-left: 0; list-style: none; }
+    .list-check li { margin: 10px 0; padding-left: 28px; position: relative; }
+    .list-check li::before {
+      content: ""; position: absolute; left: 0; top: 6px;
+      width: 18px; height: 18px; border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, var(--accent), var(--brand-2));
+      box-shadow: 0 0 0 3px rgba(107,196,255,0.18);
+    }
+
+    .pill {
+      display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 999px; font-size: 14px; color: var(--muted);
+    }
+
+    .portal-card { display: flex; flex-direction: column; gap: 10px; }
+    .portal-card h3 { margin: 0; font-size: 18px; }
+    .portal-card p { margin: 0; color: var(--muted); }
+
+    .note { font-size: 14px; color: var(--muted); }
+
+    /* Footer */
+    footer {
+      margin-top: 30px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+    }
+    .footer-wrap { display: grid; grid-template-columns: 1fr; gap: 14px; padding: 20px 0; }
+    .footer-brand { display: flex; align-items: center; gap: 10px; }
+    .footer-meta { color: var(--muted); font-size: 13px; }
+
+    /* Buttons row */
+    .buttons { display: flex; gap: 10px; flex-wrap: wrap; }
+
+    /* Breakpoints */
+    @media (min-width: 720px) {
+      .hero { padding: 68px 0 38px; }
+      .hero-grid { grid-template-columns: 1.2fr 1fr; }
+      .hero-cards { grid-template-columns: repeat(2, 1fr); }
+      .grid-2 { grid-template-columns: repeat(2, 1fr); }
+      .grid-3 { grid-template-columns: repeat(3, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="container header-inner">
+      <div class="brand">
+        <div class="brand-logo" aria-hidden="true"></div>
+        <h1>Rajasthan SSO — Complete Guide</h1>
+      </div>
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="#overview">Overview</a></li>
+          <li><a href="#official-portals">Official Portals</a></li>
+          <li><a href="#coming-part-2">Registration & Login</a></li>
+          <li><a href="#coming-part-3">Services & Support</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="overview">
+      <div class="container hero-grid">
+        <div>
+          <span class="badge">SSO • Guide</span>
+          <h2>Rajasthan Single Sign‑On (SSO): What it is & why it matters</h2>
+          <p class="sub">Rajasthan SSO provides one secure identity to access multiple government services. This Part 1 covers the essentials: how SSO works, who should use it, prerequisites, and the official portals you’ll rely on.</p>
+          <div class="buttons" role="group" aria-label="Quick actions">
+            <a class="cta primary" href="https://sso.rajasthan.gov.in/" rel="noopener" aria-label="Open Rajasthan SSO portal">Register / Sign In</a>
+            <a class="cta secondary" href="#official-portals" aria-label="Jump to official portals section">Official Portals</a>
+          </div>
+        </div>
+        <div class="hero-cards">
+          <div class="card">
+            <strong>Single identity</strong>
+            <p class="lead">Use one SSO ID to authenticate across integrated state services.</p>
+          </div>
+          <div class="card">
+            <strong>Secure access</strong>
+            <p class="lead">OTP and strong-password practices improve account safety on public or shared devices.</p>
+          </div>
+          <div class="card">
+            <strong>Time‑saving</strong>
+            <p class="lead">Avoid repeated registrations and move faster across services like eMitra or Recruitment.</p>
+          </div>
+          <div class="card">
+            <strong>Citizen‑first</strong>
+            <p class="lead">Purpose‑built for residents, applicants, employees and kiosk operators in Rajasthan.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHO & PREREQUISITES -->
+    <section>
+      <div class="container grid-2">
+        <div class="card">
+          <h3 class="section-title">Who should use Rajasthan SSO?</h3>
+          <ul class="list-check">
+            <li>Citizens accessing state services and certificates.</li>
+            <li>Applicants using state <em>Recruitment</em> and examination portals.</li>
+            <li>eMitra operators delivering assisted services.</li>
+            <li>Government employees accessing departmental systems.</li>
+          </ul>
+        </div>
+        <div class="card">
+          <h3 class="section-title">Prerequisites</h3>
+          <ul class="list-check">
+            <li>Active mobile number for OTP.</li>
+            <li>Personal email ID for notices and recovery.</li>
+            <li>Identity option (e.g., Jan Aadhaar / Aadhaar / permissible alternatives as shown on SSO portal).</li>
+            <li>Accurate personal details for profile verification.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- OFFICIAL PORTALS -->
+    <section id="official-portals">
+      <div class="container">
+        <h3 class="section-title">Official Government Portals</h3>
+        <p class="lead">Only use official government websites for registration, sign‑in, and service access.</p>
+        <div class="grid-3">
+          <div class="card portal-card">
+            <h3>SSO Portal</h3>
+            <p>Register and sign in to your SSO account. Manage your profile and access integrated services.</p>
+            <div class="buttons">
+              <a class="cta primary" href="https://sso.rajasthan.gov.in/" rel="noopener" aria-label="Open SSO portal">Open sso.rajasthan.gov.in</a>
+            </div>
+          </div>
+          <div class="card portal-card">
+            <h3>Rajasthan State Portal</h3>
+            <p>State information and key links to government programs and initiatives.</p>
+            <div class="buttons">
+              <a class="cta secondary" href="https://www.rajasthan.gov.in/" rel="noopener" aria-label="Open Rajasthan state portal">Open rajasthan.gov.in</a>
+            </div>
+          </div>
+          <div class="card portal-card">
+            <h3>eMitra</h3>
+            <p>Citizen service delivery platform integrated with SSO for many services and certificates.</p>
+            <div class="buttons">
+              <a class="cta secondary" href="https://emitra.rajasthan.gov.in/" rel="noopener" aria-label="Open eMitra portal">Open emitra.rajasthan.gov.in</a>
+            </div>
+          </div>
+          <div class="card portal-card">
+            <h3>Recruitment</h3>
+            <p>State recruitment portal (SSO login required) for applications and related notices.</p>
+            <div class="buttons">
+              <a class="cta secondary" href="https://recruitment.rajasthan.gov.in/" rel="noopener" aria-label="Open Rajasthan recruitment portal">Open recruitment.rajasthan.gov.in</a>
+            </div>
+          </div>
+        </div>
+        <p class="note">Tip: Always verify the domain ends with <strong>.gov.in</strong> and avoid sharing OTP or passwords with anyone.</p>
+      </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rajasthan SSO Registration & Login — Step by Step (Part 2)</title>
+  <meta name="description" content="Part 2 of the Rajasthan SSO Guide: Detailed step-by-step registration, login methods, profile setup, and recovery process. SEO-friendly and mobile responsive." />
+  <link rel="canonical" href="https://example.com/rajasthan-single-sign-on-sso-guide-part-2" />
+  <style>
+    :root {
+      --bg: #0b0f14;
+      --card: #121823;
+      --muted: #9fb2c8;
+      --text: #e7eef7;
+      --brand: #6bc4ff;
+      --brand-2: #a68cff;
+      --accent: #59f0c6;
+      --radius: 20px;
+      --shadow: 0 12px 30px rgba(0,0,0,0.35);
+    }
+    body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      background: linear-gradient(120deg, rgba(107,196,255,0.08), transparent 60%),
+                  linear-gradient(300deg, rgba(166,140,255,0.08), transparent 60%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .container { max-width: 1120px; margin: auto; padding: 20px; }
+    h2, h3 { margin-top: 0; }
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius);
+      padding: 22px;
+      margin-bottom: 22px;
+      box-shadow: var(--shadow);
+    }
+    .step-list { list-style: none; padding: 0; margin: 0; }
+    .step-list li { position: relative; padding-left: 34px; margin-bottom: 16px; }
+    .step-list li::before {
+      content: counter(step);
+      counter-increment: step;
+      position: absolute;
+      left: 0; top: 0;
+      width: 26px; height: 26px;
+      border-radius: 50%;
+      background: linear-gradient(145deg, var(--brand), var(--brand-2));
+      color: #0b0f14;
+      display: flex; align-items: center; justify-content: center;
+      font-weight: bold;
+    }
+    .button-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+    .cta {
+      display: inline-block;
+      padding: 10px 16px;
+      border-radius: 999px;
+      text-decoration: none;
+      background: linear-gradient(145deg, var(--brand), var(--brand-2));
+      color: #0b0f14;
+      font-weight: 600;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.28);
+    }
+    .cta.secondary { background: rgba(255,255,255,0.08); color: var(--text); }
+    @media (min-width: 720px) {
+      .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+<section id="coming-part-2">
+    <section id="part-2" class="container">
+      <h2>Registration & Login — Step‑by‑Step</h2>
+      <p class="lead">This section provides a detailed walkthrough of creating your Rajasthan SSO ID, logging in, and handling password or ID recovery.</p>
+
+      <div class="card">
+        <h3>How to Register (Citizens)</h3>
+        <ol class="step-list">
+          <li>Go to <a href="https://sso.rajasthan.gov.in/" target="_self">sso.rajasthan.gov.in</a> and click <strong>Register</strong>.</li>
+          <li>Select registration type: <em>Citizen</em>, <em>UDYOG</em>, or <em>Government Employee</em>.</li>
+          <li>Choose identity option (Jan Aadhaar, Bhamashah, Aadhaar, or Google).</li>
+          <li>Enter personal details, verify mobile via OTP, and set a secure password.</li>
+          <li>Save your SSO ID and password safely for future logins.</li>
+        </ol>
+      </div>
+
+      <div class="grid-2">
+        <div class="card">
+          <h3>Login Methods</h3>
+          <ul class="step-list">
+            <li>Visit <a href="https://sso.rajasthan.gov.in/signin" target="_self">SSO Sign‑In</a>.</li>
+            <li>Enter your SSO ID & password, then CAPTCHA.</li>
+            <li>Or use OTP login (mobile number verification).</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>Password & ID Recovery</h3>
+          <ul class="step-list">
+            <li>Click <strong>Forgot Password</strong> on the sign‑in page to reset using OTP/email.</li>
+            <li>Click <strong>Forgot SSOID</strong> for username recovery (Aadhaar/Jan Aadhaar details required).</li>
+            <li>For recruitment mapping issues, use the recruitment portal helpdesk.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Next Step</h3>
+        <p>Once registered, you can log in and access integrated portals like <a href="https://emitra.rajasthan.gov.in/">eMitra</a> or <a href="https://recruitment.rajasthan.gov.in/">Recruitment</a>. Proceed to Part 3 for services and help details.</p>
+        <div class="button-row">
+          <a class="cta" href="https://sso.rajasthan.gov.in/">Go to SSO Portal</a>
+          <a class="cta secondary" href="https://www.rajasthan.gov.in/">Open State Portal</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+    <section id="coming-part-3">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rajasthan SSO Services & Support — Complete Guide (Part 3)</title>
+  <meta name="description" content="Part 3 of the Rajasthan SSO Guide: Explore available services, departmental integration, and official support/helpdesk options. SEO-optimized and mobile responsive." />
+  <link rel="canonical" href="https://example.com/rajasthan-single-sign-on-sso-guide-part-3" />
+  <style>
+    :root {
+      --bg: #0b0f14;
+      --card: #121823;
+      --muted: #9fb2c8;
+      --text: #e7eef7;
+      --brand: #6bc4ff;
+      --brand-2: #a68cff;
+      --accent: #59f0c6;
+      --radius: 20px;
+      --shadow: 0 12px 30px rgba(0,0,0,0.35);
+    }
+    body {
+      margin: 0;
+      font-family: system-ui, sans-serif;
+      background: linear-gradient(120deg, rgba(107,196,255,0.08), transparent 60%),
+                  linear-gradient(300deg, rgba(166,140,255,0.08), transparent 60%),
+                  var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+    .container { max-width: 1120px; margin: auto; padding: 20px; }
+    h2, h3 { margin-top: 0; }
+    .card {
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius);
+      padding: 22px;
+      margin-bottom: 22px;
+      box-shadow: var(--shadow);
+    }
+    .services-grid { display: grid; gap: 22px; }
+    @media (min-width: 768px) {
+      .services-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .button-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+    .cta {
+      display: inline-block;
+      padding: 10px 16px;
+      border-radius: 999px;
+      text-decoration: none;
+      background: linear-gradient(145deg, var(--brand), var(--brand-2));
+      color: #0b0f14;
+      font-weight: 600;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.28);
+    }
+    .cta.secondary { background: rgba(255,255,255,0.08); color: var(--text); }
+  </style>
+</head>
+<body>
+  <main>
+    <section id="part-3" class="container">
+      <h2>Services & Support</h2>
+      <p class="lead">In this final section, explore the wide range of services available through Rajasthan SSO, its departmental integration, and official help options for citizens.</p>
+
+      <div class="card">
+        <h3>Major Services Available</h3>
+        <div class="services-grid">
+          <div>
+            <h4>eMitra Services</h4>
+            <p>Pay utility bills, apply for certificates, and access schemes at <a href="https://emitra.rajasthan.gov.in/" target="_self">eMitra</a>.</p>
+          </div>
+          <div>
+            <h4>Recruitment Portal</h4>
+            <p>Apply for state government jobs at <a href="https://recruitment.rajasthan.gov.in/" target="_self">Recruitment Portal</a>.</p>
+          </div>
+          <div>
+            <h4>State Government Departments</h4>
+            <p>Integrated access for education, health, police, revenue, and more departments via <a href="https://ssoraj.com/sso-helpdesk/">sso id</a>
+.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Mobile App Access</h3>
+        <p>The official <strong>SSO Rajasthan Mobile App</strong> is available on Android. It enables login, service access, and notification alerts in one place.</p>
+      </div>
+
+      <div class="card">
+        <h3>Official Support & Helpdesk</h3>
+        <ul>
+          <li>Visit <a href="https://sso.rajasthan.gov.in/help" target="_self">SSO Help Page</a> for FAQs and guides.</li>
+          <li>For service-specific help, contact the respective department’s official helpdesk.</li>
+          <li>Use the <strong>Help & Feedback</strong> option in your SSO profile for direct support.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Conclusion</h3>
+        <p>Rajasthan SSO simplifies citizen services by merging multiple portals into one secure login. With proper registration, login, and recovery methods (covered in Part 2), users can fully benefit from hundreds of digital services.</p>
+        <div class="button-row">
+          <a class="cta" href="https://sso.rajasthan.gov.in/">Go to SSO Portal</a>
+          <a class="cta secondary" href="https://www.rajasthan.gov.in/">Visit Rajasthan State Portal</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+
+
+  <footer>
+    <div class="container footer-wrap">
+      <div class="footer-brand">
+        <div class="brand-logo" aria-hidden="true"></div>
+        <strong>Rajasthan SSO — Guide</strong>
+      </div>
+      <div class="footer-meta">Official sites referenced here: sso.rajasthan.gov.in, rajasthan.gov.in, emitra.rajasthan.gov.in, recruitment.rajasthan.gov.in</div>
+    </div>
+  </footer>
+
+  <script>
+    // Set an easily editable update date for SEO freshness
+    (function(){
+      const el = document.querySelector('#last-updated span');
+      if (!el) return;
+      const d = new Date();
+      const pad = n => (n < 10 ? '0' + n : '' + n);
+      el.textContent = d.getFullYear() + '-' + pad(d.getMonth()+1) + '-' + pad(d.getDate());
+    })();
+  </script>
+</body>
+</html>
